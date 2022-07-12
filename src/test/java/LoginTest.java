@@ -3,7 +3,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import runner.BaseTest;
 
-public class LoginTests extends BaseTest {
+public class LoginTest extends BaseTest {
 
     @Test
     public void loginTest() {
