@@ -18,6 +18,7 @@ public class LoginTest extends BaseTest {
 
         getDriver().get("http://localhost:8080");
         //Thread.sleep(100000);
+        Assert.assertEquals(getDriver().findElement(By.xpath("//div/h1")).getText(),  "Welcome to Jenkins!");
         softAsserts.assertEquals(getDriver().findElement(By.xpath("//div/h1")).getText(),  "Welcome to Jenkins!", "welcome message did not appear");
 
         softAsserts.assertTrue(getDriver().findElement(By.name("j_username")).isEnabled(), "username field isn't present");
