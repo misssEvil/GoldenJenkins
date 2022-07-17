@@ -22,16 +22,14 @@ public class LoginTest extends BaseTest {
 
         softAsserts.assertTrue(getDriver().findElement(By.name("j_username")).isEnabled(), "username field isn't present");
         softAsserts.assertTrue(getDriver().findElement(By.name("j_password")).isEnabled(), "password field isn't present");
-        softAsserts.assertTrue(getDriver().findElement(By.name("Submit")).isEnabled(), "OK button isn't present");
-
-
-
-        /* getDriver().findElement(By.name("j_username")).sendKeys("test");
-        getDriver().findElement(By.name("j_password")).sendKeys("test");
-        getDriver().findElement(By.name("Submit")).click();*/
-
-   /*     softAsserts.assertTrue(getDriver().findElement(By.xpath("//a[@href='/user/test']")).isEnabled());*/
+        softAsserts.assertTrue(getDriver().findElement(By.xpath("//div/input[@name='Submit']")).isEnabled(), "OK button isn't present");
         softAsserts.assertAll();
+        getDriver().findElement(By.name("j_username")).sendKeys("test");
+        getDriver().findElement(By.name("j_password")).sendKeys("test");
+        getDriver().findElement(By.name("Submit")).click();
+
+        //softAsserts.assertTrue(getDriver().findElement(By.xpath("//a[@href='/user/test']")).isEnabled());
+
 
     }
 
