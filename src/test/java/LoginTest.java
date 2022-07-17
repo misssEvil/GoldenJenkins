@@ -8,18 +8,16 @@ import runner.BaseTest;
 public class LoginTest extends BaseTest {
 
     @Test
-    public void loginTest() throws InterruptedException {
+    public void loginTest(){
 
            /* Assert.assertTrue(getDriver().findElement(By.xpath("//a[@href='/logout']")).isEnabled());
             getDriver().findElement(By.xpath("//a[@href='/logout']")).click();
 */
         SoftAssert softAsserts = new SoftAssert();
 
-
         getDriver().get("http://localhost:8080");
-        //Thread.sleep(100000);
-        Assert.assertEquals(getDriver().findElement(By.xpath("//div/h1")).getText(),  "Welcome to Jenkins!");
         softAsserts.assertEquals(getDriver().findElement(By.xpath("//div/h1")).getText(),  "Welcome to Jenkins!", "welcome message did not appear");
+        softAsserts.assertEquals(getDriver().getCurrentUrl(), "http://localhost:8080/login?from=%2F");
 
         softAsserts.assertTrue(getDriver().findElement(By.name("j_username")).isEnabled(), "username field isn't present");
         softAsserts.assertTrue(getDriver().findElement(By.name("j_password")).isEnabled(), "password field isn't present");
