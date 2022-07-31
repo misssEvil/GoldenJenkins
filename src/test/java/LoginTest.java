@@ -27,6 +27,8 @@ public class LoginTest extends BaseTest {
         getDriver().findElement(By.name("j_password")).sendKeys("test");
         getDriver().findElement(By.name("Submit")).click();
 
+        System.out.println(getDriver().findElement(By.xpath("//a[@href='/user/test']")));
+
         //softAsserts.assertTrue(getDriver().findElement(By.xpath("//a[@href='/user/test']")).isEnabled());
 
 
