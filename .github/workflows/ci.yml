@@ -19,41 +19,25 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-        cache: maven
-        
-    #- name: Сache maven
-      #uses: actions/cache@v2
-      #with:
-         #path: ~/.m2/repository
-         #key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-         #restore-keys: ${{ runner.os }}-maven-        
-        
-    #- name: Remove default github maven configuration
-        # This step is a workaround to avoid a decryption issue of Beam's
-        # net.linguica.gradle.maven.settings plugin and github's provided maven
-        # settings.xml file
-      #run: rm ~/.m2/settings.xml   
-    
-    - name: Prepare Jenkins data
-      run: |
-          cat ${{ github.workspace }}/jenkins_data/jenkins_backup0* > ${{ github.workspace }}/jenkins_backup.tar
-          md5sum ${{ github.workspace }}/jenkins_backup.tar
-          
+        cache: maven     
+     
     - name: Extract Jenkins data and set permission
       run: |
           tar -xzvf ./jenkins_backup.tar
           chmod -R 777 ./jenkins_backup/var/jenkins_home
-    
-    
+
+    - name: Docker login
+      run: echo ${{ secrets.DOCKER_PAS }} | docker login --username ${{ secrets.DOCKER_USER }} --password-stdin
+
     - name: Login to Docker Hub
       uses: docker/login-action@v1
       with:
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PASSWORD }}  
-        
-    - name: Run Jenkins in Docker
+ 
+    - name: Docker start
       run: docker run --rm --detach -p 8080:8080 -p 50000:50000 -v ${{ github.workspace }}/jenkins_backup/var/jenkins_home:/var/jenkins_home jenkins/jenkins:2.332.3-lts-jdk11
-
+  
     - name: Change wrapper permissions
       run: chmod +x ./.github/wait-for-jenkins.sh 
       
