@@ -26,7 +26,7 @@ jobs:
           cat ${{ github.workspace }}/jenkins_data/jenkins_backup0* > ${{ github.workspace }}/jenkins_backup.tar
           md5sum ${{ github.workspace }}/jenkins_backup.tar
           
-     - name: Extract Jenkins data and set permission
+    - name: Extract Jenkins data and set permission
       run: |
           tar -xzvf ./jenkins_backup.tar
           chmod -R 777 ./jenkins_backup/var/jenkins_home
