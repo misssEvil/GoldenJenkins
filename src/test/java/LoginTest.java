@@ -29,7 +29,7 @@ public class LoginTest extends BaseTest {
 
         System.out.println(getDriver().findElement(By.xpath("//a[@href='/user/test']")));
 
-        //softAsserts.assertTrue(getDriver().findElement(By.xpath("//a[@href='/user/test']")).isEnabled());
+        Assert.assertTrue(getDriver().findElement(By.xpath("//a[@href='/user/test']")).isEnabled());
 
 
     }
