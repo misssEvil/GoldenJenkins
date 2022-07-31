@@ -40,13 +40,13 @@ jobs:
       - name: Extract Jenkins data and set permission
         run: |
           tar -xvf ./jenkins_backup.tar
-          chmod -R 777 ./jenkins_backup/var/jenkins_home
+          chmod -R 777 ./var/jenkins_home
 
       - name: Docker login
         run: echo ${{ secrets.DOCKER_PAS }} | docker login --username ${{ secrets.DOCKER_USER }} --password-stdin
 
       - name: Docker start
-        run: docker run --rm --detach -p 8080:8080 -p 50000:50000 -v ${{ github.workspace }}/jenkins_backup/var/jenkins_home:/var/jenkins_home jenkins/jenkins:2.332.3-lts-jdk11
+        run: docker run --rm --detach -p 8080:8080 -p 50000:50000 -v ${{ github.workspace }}/var/jenkins_home:/var/jenkins_home jenkins/jenkins:2.332.3-lts-jdk11
 
       - name: Wait for the Jenkins
         run: ./.github/wait-for-jenkins.sh
