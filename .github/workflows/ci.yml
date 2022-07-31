@@ -35,11 +35,11 @@ jobs:
       - name: Prepare Jenkins data
         run: |
           cat ${{ github.workspace }}/jenkins_data/jenkins_backup0* > ${{ github.workspace }}/jenkins_backup.tar.gz
-          md5sum ${{ github.workspace }}/jenkins_backup.tar.gz
+          md5sum ${{ github.workspace }}/jenkins_backup.tar
 
       - name: Extract Jenkins data and set permission
         run: |
-          tar -xzvf ./jenkins_backup.tar.gz
+          tar -xvf ./jenkins_backup.tar
           chmod -R 777 ./jenkins_backup/var/jenkins_home
 
       - name: Docker login
