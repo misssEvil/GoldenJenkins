@@ -36,7 +36,7 @@ jobs:
     
     - name: Prepare Jenkins data
       run: |
-          cat ${{ github.workspace }}/jenkins_data/jenkins_backup_0* > ${{ github.workspace }}/jenkins_backup.tar
+          cat ${{ github.workspace }}/jenkins_data/backup_0* > ${{ github.workspace }}/jenkins_backup.tar
           md5sum ${{ github.workspace }}/jenkins_backup.tar
           
     - name: Extract Jenkins data and set permission
