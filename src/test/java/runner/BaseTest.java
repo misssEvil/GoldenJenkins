@@ -11,11 +11,14 @@ public class BaseTest {
     @BeforeMethod
     protected void beforeMethod() {
         driver = BaseUtils.createDriver();
+        JenkinsUtils.login(driver);
     }
 
     @AfterMethod
     protected void afterMethod() {
+        JenkinsUtils.logout(driver);
         driver.quit();
+
     }
 
     protected WebDriver getDriver() {

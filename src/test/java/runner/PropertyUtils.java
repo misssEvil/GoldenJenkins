@@ -32,8 +32,6 @@ public class PropertyUtils {
         }
     }
 
-
-
     protected static final ChromeOptions chromeOptions;
     static {
         initProperties();
