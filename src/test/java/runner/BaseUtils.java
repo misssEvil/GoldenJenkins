@@ -23,5 +23,16 @@ public class BaseUtils {
         return driver;
     }
 
+    public static void log(String str){
+        System.out.println(str);
+    }
+
+    public static void logf(String str, Object ... arr){
+        System.out.printf(str, arr);
+        System.out.println();
+    }
+
+
+
 
 }
